@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Biodata Pribadi | Biodata Naina </title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        nav h2 {
+            color: #38bdf8;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* SECTION */
+        section {
+            padding: 100px 8%;
+            min-height: 100vh;
+        }
+
+        /* HOME */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background: linear-gradient(135deg, #0f172a, #172554);
+        }
+
+        .home-text {
+            max-width: 600px;
+        }
+
+        .home-text h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .home-text h1 span {
+            color: #38bdf8;
+        }
+
+        .home-text p {
+            color: #cbd5e1;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #38bdf8;
+            color: #0f172a;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: #7dd3fc;
+        }
+
+        .profile {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            padding: 8px;
+        }
+
+        .profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            background: #1e293b;
+        }
+
+        /* JUDUL */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            color: #38bdf8;
+        }
+
+        .section-title p {
+            color: #94a3b8;
+        }
+
+        /* BIODATA */
+        .biodata-container {
+            max-width: 900px;
+            margin: auto;
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .biodata-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .biodata-table tr {
+            border-bottom: 1px solid #334155;
+        }
+
+        .biodata-table td {
+            padding: 15px;
+        }
+
+        .biodata-table td:first-child {
+            color: #38bdf8;
+            font-weight: bold;
+            width: 35%;
+        }
+
+        /* CARD */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 30px;
+            text-align: center;
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: #26364d;
+        }
+
+        .card .icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+        }
+
+        /* CITA-CITA */
+        .dream {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            background: linear-gradient(135deg, #1e3a8a, #312e81);
+            padding: 50px;
+            border-radius: 25px;
+        }
+
+        .dream h3 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .dream p {
+            color: #dbeafe;
+        }
+
+        /* PENDIDIKAN */
+        .education {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .education-item {
+            background: #1e293b;
+            margin-bottom: 20px;
+            padding: 25px;
+            border-left: 5px solid #38bdf8;
+            border-radius: 10px;
+        }
+
+        .education-item h3 {
+            color: #38bdf8;
+        }
+
+        .education-item p {
+            color: #cbd5e1;
+        }
+
+        /* SKILL */
+        .skill {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .bar {
+            background: #334155;
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: #38bdf8;
+            border-radius: 10px;
+        }
+
+        /* KONTAK */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            margin: 15px;
+            color: #cbd5e1;
+        }
+
+        .contact a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #020617;
+            text-align: center;
+            padding: 25px;
+            color: #94a3b8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            section {
+                padding: 90px 5%;
+            }
+
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .home-text h1 {
+                font-size: 38px;
+            }
+
+            .profile {
+                width: 220px;
+                height: 220px;
+            }
+
+            .biodata-table td {
+                padding: 10px 5px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <h2>MyProfile</h2>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#biodata">Biodata</a></li>
+            <li><a href="#hobi">Hobi</a></li>
+            <li><a href="#pendidikan">Pendidikan</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HOME -->
+    <section id="home">
+
+        <div class="home-text">
+            <p>Halo,saya</p>
+
+            <h1>
+                <span>Naina</span>
+            </h1>
+
+            <p>
+                Selamat datang di website biodata pribadi saya.
+                Di sini kamu bisa mengenal saya lebih dekat,
+                mulai dari biodata, hobi, cita-cita, hingga keahlian saya.
+            </p>
+
+            <a href="#biodata" class="btn">
+                Lihat Biodata
+            </a>
+        </div>
+
+        <div class="profile">
+            <!-- Ganti foto.jpg dengan foto kamu -->
+            <img src="foto.jpg" alt="Foto Profil">
+        </div>
+
+    </section>
+
+
+    <!-- BIODATA -->
+    <section id="biodata">
+
+        <div class="section-title">
+            <h2>Biodata Saya</h2>
+            <p>Informasi pribadi saya</p>
+        </div>
+
+        <div class="biodata-container">
+
+            <table class="biodata-table">
+
+                <tr>
+                    <td>Nama Lengkap</td>
+                    <td>: Naina Putri Ramadani</td>
+                </tr>
+
+                <tr>
+                    <td>Nama Panggilan</td>
+                    <td>: Naina</td>
+                </tr>
+
+                <tr>
+                    <td>Umur</td>
+                    <td>: 16 Tahun</td>
+                </tr>
+
+                <tr>
+                    <td>Tempat, Tanggal Lahir</td>
+                    <td>: Bandung, 23 agustus 2010</td>
+                </tr>
+
+                <tr>
+                    <td>Jenis Kelamin</td>
+                    <td>: Perempuan</td>
+                </tr>
+
+                <tr>
+                    <td>Agama</td>
+                    <td>: Islam</td>
+                </tr>
+
+                <tr>
+                    <td>Alamat</td>
+                    <td>: jl.jiwanaya rt 03 rw 04 kec. cibenying kab.cimenyan </td>
+                </tr>
+
+                <tr>
+                    <td>Status</td>
+                    <td>: Pelajar</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOBI -->
+    <section id="hobi">
+
+        <div class="section-title">
+            <h2>Hobi & Minat</h2>
+            <p> bermain game ,dengerin musik, fotografi, menggambar </p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🎮</div>
+                <h3>Gaming</h3>
+                <p>Saya suka bermain game roblox di waktu luang.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🎵</div>
+                <h3>Musik</h3>
+                <p>Saya suka mendengarkan berbagai jenis musik seperti titik nadir.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">📷</div>
+                <h3>Fotografi</h3>
+                <p>Saya tertarik mengabadikan berbagai momen.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">💻</div>
+                <h3>menggambar</h3>
+                <p>Saya tertarik dengan menggambar bunga.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CITA-CITA -->
+    <section id="cita-cita">
+
+        <div class="section-title">
+            <h2>Cita-Cita</h2>
+            <p>impian saya</p>
+        </div>
+
+        <div class="dream">
+
+            <h3>🚀 Menjadi Seorang dokter r</h3>
+
+            <p>
+                Saya ingin menjadi dokter karena ingin bisa menyembuhkan keluarga kalau lagi sakit
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PENDIDIKAN -->
+    <section id="pendidikan">
+
+        <div class="section-title">
+            <h2>Riwayat Pendidikan</h2>
+            <p>Perjalanan pendidikan saya</p>
+        </div>
+
+        <div class="education">
+
+            <div class="education-item">
+                <h3>SD</h3>
+                <p>SD BOJONG KACOR 123</p>
+                <p>2016 - 2022</p>
+            </div>
+
+            <div class="education-item">
+                <h3>SMP</h3>
+                <p>SMPN 3 CIMENYAN</p>
+                <p>2022 - 2025</p>
+            </div>
+
+            <div class="education-item">
+                <h3>SMA / SMK</h3>
+                <p>SMAN 19 BANDUNG</p>
+                <p>2025 - Sekarang</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- KEAHLIAN -->
+    <section id="keahlian">
+
+        <div class="section-title">
+            <h2>Keahlian</h2>
+            <p>Kemampuan yang sedang saya kembangkan menggambar </p>
+        </div>
+
+        <div class="skill">
+
+            <div class="skill-name">
+                <span>HTML</span>
+                <span>85%</span>
+            </div>
+
+            <div class="bar">
+                <div class="progress" style="width: 85%;"></div>
+            </div>
+
+        </div>
+
+        <div class="skill">
+
+            <div class="skill-name">
+                <span>CSS</span>
+                <span>75%</span>
+            </div>
+
+            <div class="bar">
+                <div class="progress" style="width: 75%;"></div>
+            </div>
+
+        </div>
+
+        <div class="skill">
+
+            <div class="skill-name">
+                <span>JavaScript</span>
+                <span>60%</span>
+            </div>
+
+            <div class="bar">
+                <div class="progress" style="width: 60%;"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- KONTAK -->
+    <section id="kontak">
+
+        <div class="section-title">
+            <h2>Kontak Saya</h2>
+            <p>Temukan saya di media sosial</p>
+        </div>
+
+        <div class="contact">
+
+            <p>📧 Email:
+                <a href="mailto:emailkamu@gmail.com">
+                    email@kembarjiwanaya
+                </a>
+            </p>
+
+            <p>📱 Instagram:
+                <a href="#">
+                    @nainaputriramadani
+                </a>
+            </p>
+
+            <p>📍 Lokasi:
+                Bandung 
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            Naina Putri Ramadani | Personal Biodata Website
+        </p>
+
+    </footer>
+
+</body>
+  </html>
